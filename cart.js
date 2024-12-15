@@ -1,11 +1,9 @@
-
-
 console.clear();
 
 // Update badge counter if the cookie exists
 if (document.cookie.indexOf(',counter=') >= 0) {
     let counter = document.cookie.split(',')[1].split('=')[1];
-    document.getElementById("badge").innerHTML = counter;
+    document.getElementById("badge")?.innerHTML = counter;
 }
 
 let cartContainer = document.getElementById('cartContainer');
@@ -55,12 +53,8 @@ let h2Text = document.createTextNode('Total Amount');
 totalh2.appendChild(h2Text);
 totalDiv.appendChild(totalh2);
 
-
-
-
 // Function to update total amount including GST and delivery charge
 function amountUpdate(amount) {
-    
     // Calculate GST
     let gstAmount = (amount * 0.18).toFixed(2);
     localStorage.setItem('gstAmount', gstAmount);
@@ -91,7 +85,6 @@ function amountUpdate(amount) {
     }
     gsth4.textContent = `GST (18%): Rs${gstAmount}`;
 
-    
     // Delivery charge section with tooltip
     let deliveryh4 = document.getElementById('deliveryh4');
     if (!deliveryh4) {
@@ -103,12 +96,9 @@ function amountUpdate(amount) {
         deliveryTooltip.title = 'Basic delivery charge for orders below Rs 499. Free delivery for orders above Rs 499.';
         deliveryh4.appendChild(deliveryTooltip);
 
-        
         totalDiv.appendChild(deliveryh4);
     }
     deliveryh4.textContent = `Delivery Charge: Rs ${deliveryCharge}`;
-
-    
 
     // Subtotal section
     let subtotalh4 = document.getElementById('subtotalh4');
@@ -120,13 +110,9 @@ function amountUpdate(amount) {
     subtotalh4.textContent = `To Pay: Rs ${subtotal}`;
     localStorage.setItem('subtotal', subtotal); // Store subtotal in localStorage
 
-
     // Append Place Order button
     totalDiv.appendChild(buttonDiv);
-
-    console.log("Total Amount:", totalh4, "GST:", gsth4, "Delivery Charge:", deliveryh4, "Subtotal:", subtotalh4);
 }
-
 
 // Create the Place Order button
 let buttonDiv = document.createElement('div');
@@ -147,6 +133,7 @@ buttonTag.onclick = function () {
     console.log("Place Order button clicked");
 };
 
+// Clear Cart Button
 let clearCartButton = document.createElement('button');
 clearCartButton.id = 'clearCartButton';
 
@@ -170,8 +157,8 @@ clearCartButton.onclick = function () {
     localStorage.setItem('badgeCount', '0');
 
     // Update the DOM on the current page
-    document.getElementById("badge").innerHTML = '0';
-    document.getElementById("totalItem").innerHTML = 'Total Items: 0';
+    document.getElementById("badge")?.innerHTML = '0';
+    document.getElementById("totalItem")?.innerHTML = 'Total Items: 0';
 
     // Clear cart container
     cartContainer.innerHTML = '';
@@ -179,9 +166,6 @@ clearCartButton.onclick = function () {
 
     // Reset total amount
     amountUpdate(0);
-
-    // Broadcast an event to update badges across open tabs
-    window.dispatchEvent(new Event('storage'));
 };
 
 // Listen for badge updates on all pages
@@ -193,10 +177,8 @@ window.addEventListener('storage', function () {
     }
 });
 
-
 // Append Clear Cart button below Place Order button
 buttonDiv.appendChild(clearCartButton);
-
 
 // Fetch data from the local JSON file
 fetch('./products.json')
@@ -208,7 +190,7 @@ fetch('./products.json')
     })
     .then(contentTitle => {
         let counter = Number(document.cookie.split(',')[1].split('=')[1]);
-        document.getElementById("totalItem").innerHTML = `Total Items: ${counter}`;
+        document.getElementById("totalItem")?.innerHTML = `Total Items: ${counter}`;
 
         let items = document.cookie.split(',')[0].split('=')[1].split(" ");
         console.log("Counter:", counter);
