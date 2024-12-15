@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="icon" href="img/logo.png" type="image/png" sizes="16x16">
+
+    <link rel="stylesheet" href="css/information.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Customer Details</h2>
+        <form id="orderForm" name="customer-details">
+            <!-- Customer Details -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address1">Address Line :</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Non-Editable Cart Details -->
+            <label for="cartitems">Cart Items:</label>
+            <input type="text" id="cartitems" name="cartitems" readonly value=''>
+
+            <label for="subtotal">Total Amount:</label>
+            <input type="text" id="subtotal" name="TotalAmount" readonly value=''>
+
+            <!-- Save and Pay Button -->
+            <button id="pay-save-button">Save Details & Pay</button>
+        </form>
+    </div>
+    <script src="information.js"></script>
+    <script src="cart.js"></script>
+    <script src="payment-save.js"></script>
+    <script>
+        // Populate cart details from localStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            // Retrieve values from localStorage
+            const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+            const TotalAmount= localStorage.getItem('subtotal') || '0';
+
+            // Format cartItems as a string with item name and quantity
+            let cartItemsString = '';
+            if (Array.isArray(cartItems) && cartItems.length > 0) {
+                cartItemsString = cartItems.map(item => `${item.name} × ${item.quantity}`).join(', ');
+            }
+
+            // Populate the form fields
+            document.getElementById('cartitems').value = cartItemsString;
+            document.getElementById('subtotal').value = TotalAmount;
+        });
+    </script>
+</body>
+</html>
+
+

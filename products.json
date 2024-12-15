@@ -1,0 +1,93 @@
+[
+    {
+      "id": "1",
+      "name": "Arduino UNO microcontroller DIP with free USB cable",
+      "preview": "img/img1.png", 
+      "photos":[
+        "img/img1.png", "img/img1-2.png"
+      ],
+      "description": "Model number- Arduino UNO R3 ATmega328P ATmega16U2 with free USB cable aiotechbot Type-electronic component Brand-aiotechbot Minimum age -3 Material- epoxy Height-54cm Weight-26Width- 67cm Power source - AC current.",
+      "size": [1, 1, 0, 1, 0],
+      "isAccessory": false,
+      "brand": "AIOTECHBOT",
+      "price": 659
+    },
+    {
+      "id": "2",
+      "name": "Ultrasonic sensor module HC-SR-04 for Arduino develope",
+      "preview": "img/img2.png",
+      "photos": [
+        "img/img2-1.png", "img/img2-2.png"
+      ],
+      "description": "Model number: Ultrasonic sensor module HC-SR-04 electronic components electronic hobby kit Type: electronic component Minimum age: 10 material: Copper Net quantity: 1 width: 4.52cm Height: 5.12cm Weight: 110 Power source: DC other power feature: distance measurements from 2cm to 450cm, sensor has main two parts a transducer that create an ultrasonic sound and another listens to it's echo working voltage: DC 5V Quiescent current : 2mA level output : 5V high 0V low.",
+      "size": [0, 0, 0, 1, 0],
+      "isAccessory": false,
+      "brand": "AIOTECHBOT",
+      "price": 159.6
+    },
+    {
+      "id": "3",
+      "name": "Robotics HC-05 wireless Bluetooth module wireless serial port communication BT",
+      "preview": "img/img3.png",
+      "photos": [
+        "img/img3-1.png","img/img3-2.png","img/img3-3.png"
+      ],
+      "description": "Hardware interface-Bluetooth Colour-multicolor Compatible devices- desktop Data link protocol- Bluetooth Power supply-+3.3VDC 50mA Frequency- 2.4GHz ISM band Bluetooth protocol: Bluetooth specification v2.0+EDR Built in antenna Bluetooth transceiver PCB",
+      "size": [1, 1, 1, 1, 1],
+      "isAccessory": true,
+      "brand": "AIOTECHBOT",
+      "price": 329.59
+    },
+    {
+      "id": "4",
+      "name": "GL-12 840 points SOLDERLESS BREADBOARD",
+      "preview": "img/img4-1.png",
+      "photos": [
+        "img/img4.png"
+      ],
+      "description": "Power source - battery dc Material- plastic Weight-0.1 Height-2cm Widht-8cm Model no. -GL-12 840 points SOLDERLESS BREADBOARD",
+      "size": [1, 1, 1, 1, 1],
+      "isAccessory": true,
+      "brand": "AIOTECHBOT",
+      "price": 129.69
+    },
+    {
+      "id": "5",
+      "name": "Jumper Wire male to male, male to female, female to female (10-10-10) combo pack",
+      "preview": "img/img5-1.png",
+      "photos": [
+        "img/img5.png"
+      ],
+      "description": "This is a set of 30 (10-10-10) each male to male, male to female and female to female rainbow coloured jumper wires by Robotbanao that can be used for interconnecting electronic components on breadboard or berg strips. Durable | Reusable | Easy to install | Simple to use I Male to male | Male to female | Female to female Jumper cable length:200mm. The jumper wires are a popular choice for construction or repair. These can be used for electronic projects and are great for prototyping as you can plug and unplug them easily. Compatibility: 2.54mm spacing pin headers | No. of pieces: 30",
+      "size": [1, 1, 1, 1, 1],
+      "isAccessory": true,
+      "brand": "AIOTECHBOT",
+      "price": 90.5
+    },
+    {
+        "id": "1",
+        "name": "Arduino UNO microcontroller DIP with free USB cable",
+        "preview": "img/img1.png", 
+        "photos":[
+          "img/img1.png"
+        ],
+        "description": "Model number- Arduino UNO R3 ATmega328P ATmega16U2 with free USB cable aiotechbot Type-electronic component Brand-aiotechbot Minimum age -3 Material- epoxy Height-54cm Weight-26Width- 67cm Power source - AC current.",
+        "size": [1, 1, 0, 1, 0],
+        "isAccessory": true,
+        "brand": "AIOTECHBOT",
+        "price": 659
+      },
+      {
+        "id": "2",
+        "name": "Ultrasonic sensor module HC-SR-04 for Arduino develope",
+        "preview": "img/img2.png",
+        "photos": [
+          "img/img2-1.png", "img/img2-2.png"
+        ],
+        "description": "Model number: Ultrasonic sensor module HC-SR-04 electronic components electronic hobby kit Type: electronic component Minimum age: 10 material: Copper Net quantity: 1 width: 4.52cm Height: 5.12cm Weight: 110 Power source: DC other power feature: distance measurements from 2cm to 450cm, sensor has main two parts a transducer that create an ultrasonic sound and another listens to it's echo working voltage: DC 5V Quiescent current : 2mA level output : 5V high 0V low.",
+        "size": [0, 0, 0, 1, 0],
+        "isAccessory": true,
+        "brand": "AIOTECHBOT",
+        "price": 159.6
+      }
+  ]
