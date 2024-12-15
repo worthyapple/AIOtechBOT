@@ -3,52 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> ORDER PLACED </title>
-    <!-- favicon -->
+    <title>Customer Details</title>
     <link rel="icon" href="img/logo.png" type="image/png" sizes="16x16">
-
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/orderPlaced.css">
+    <link rel="stylesheet" href="css/information.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
-<body>  
-    <!-- HEADER -->
-    <div id="1"></div>
-    <script>
-        load("header.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(1).innerHTML = req.responseText;
-        }
-    </script>
+<body>
+    <div class="form-container">
+        <h2>Customer Details</h2>
+        <form id="orderForm" name="customer-details" method="POST" action="your-server-endpoint"> <!-- Replace with your server endpoint -->
+            <!-- Customer Details -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
 
-    <!-- OREDER PLACED -->
-    <div id="orderContainer">
-        <div id="check"><i class="fas fa-check-circle"></i></div>
-        
-        <div id="aboutCheck">
-            <h1> Order Placed Successfully! </h1>
-            <!-- <p> We've sent you an email with the Order details. </p> -->
-        </div>
+            <label for="address1">Address Line:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Non-Editable Cart Details -->
+            <label for="cartitems">Cart Items:</label>
+            <input type="text" id="cartitems" name="cartitems" readonly value=''>
+
+            <label for="subtotal">Total Amount:</label>
+            <input type="text" id="subtotal" name="TotalAmount" readonly value=''>
+
+            <!-- Save and Pay Button -->
+            <button type="button" id="pay-save-button">Save Details & Pay</button> <!-- Prevent form submission on click -->
+        </form>
     </div>
-        <!-- FOOTER -->
-        <div id="4"></div>
-        <script>
-            load("footer.html");
-            function load(url)
-            {
-                req = new XMLHttpRequest();
-                req.open("GET", url, false);
-                req.send(null);
-                document.getElementById(4).innerHTML = req.responseText;
+
+    <script src="information.js"></script>
+    <script src="cart.js"></script>
+    <script src="payment-save.js"></script>
+
+    <script>
+        // Populate cart details from localStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+            const TotalAmount = localStorage.getItem('subtotal') || '0';
+
+            let cartItemsString = '';
+            if (Array.isArray(cartItems) && cartItems.length > 0) {
+                cartItemsString = cartItems.map(item => `${item.name} × ${item.quantity}`).join(', ');
             }
-        </script>
+
+            document.getElementById('cartitems').value = cartItemsString;
+            document.getElementById('subtotal').value = TotalAmount;
+        });
+
+        // Razorpay payment on button click
+        document.getElementById('pay-save-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Define Razorpay options
+            var options = {
+                key: "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+                amount: parseFloat(document.getElementById('subtotal').value) * 100, // Convert amount to paise
+                currency: "INR",
+                name: "Your Store Name",
+                description: "Payment for customer details",
+                image: "path_to_logo.png", // Optional logo, replace with actual logo path if desired
+                handler: function(response) {
+                    alert("Payment successful: " + response.razorpay_payment_id);
+                    // After payment is successful, submit the form to save customer details
+                    document.getElementById('orderForm').submit();
+                },
+                prefill: {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    contact: document.getElementById('contact').value,
+                },
+                notes: {
+                    address: document.getElementById('address').value,
+                },
+                theme: {
+                    color: "#F37254"
+                }
+            };
+            
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    </script>
 </body>
-<script src="/orderPlaced.js"></script>
 </html>
