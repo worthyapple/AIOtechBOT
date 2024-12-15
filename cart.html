@@ -8,28 +8,15 @@
     <link rel="stylesheet" href="css/cart.css">
     <!-- favicon -->
     <link rel="icon" href="img/logo.png" type="image/png" sizes="16x16">
-
     <!-- header links -->
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    
-
 </head>
 <body>
-        <!-- HEADER -->
-    <div id="1"></div>
-    <script>
-        load("header.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(1).innerHTML = req.responseText;
-        }
-    </script>
+    <!-- HEADER -->
+    <div id="header"></div>
 
-        <!-- CART CONTAINER -->
+    <!-- CART CONTAINER -->
     <div id="cartMainContainer">
         <h1> Checkout </h1>
         <h3 id="totalItem"> Total Items: 0 </h3>
@@ -37,23 +24,41 @@
         <div id="cartContainer">
             <!-- JS rendered code -->
         </div>
-
     </div>
 
-</body>
     <!-- FOOTER -->
-    <div id="4"></div>
-    <script>
-        load("footer.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(4).innerHTML = req.responseText;
-        }
-    </script>
-<script src="/cart.js"></script>
-<script src="/information.js"></script>
+    <div id="footer"></div>
 
+    <script>
+// Asynchronous function to load HTML content
+async function load(url, elementId) {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            const text = await response.text();
+            document.getElementById(elementId).innerHTML = text;
+        } else {
+            console.error('Failed to load:', url);
+        }
+    } catch (error) {
+        console.error('Error loading content:', error);
+    }
+}
+
+// Load the header and footer
+load('header.html', 'header');
+load('footer.html', 'footer');
+
+// Load the cart and information scripts
+document.addEventListener('DOMContentLoaded', function() {
+    const script1 = document.createElement('script');
+    script1.src = '/cart.js';
+    document.body.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.src = '/information.js';
+    document.body.appendChild(script2);
+});
+</script>
+</body>
 </html>
